@@ -1,6 +1,6 @@
  
-  export const createGalleryCards = cardsInfo => {
-  const galleryCardArr = cardsInfo.map(el => {
+  export function createGalleryCards(cardInfo) {
+  const gallery = cardInfo.map(el => {
     return `
     <a href="${el.largeImageURL}"><div class="photo-card">
     <div class="imgBox"><img src="${el.webformatURL}" alt="${el.tags}" loading="lazy" /></div>
