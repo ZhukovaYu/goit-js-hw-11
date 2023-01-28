@@ -60,21 +60,19 @@ input[type="text"] {
     box-sizing: border-box;
     color: #FFFFFF;
     cursor: pointer;
-    display: inline-block;
+    display: flex;
     font-size: 14px;
     height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    padding: 10px 25px;
+    border-radius: 35px;
     line-height: 20px;
-    list-style: none;
-    margin: 0;
-    outline: none;
-    padding: 10px 16px;
-    position: relative;
     text-align: center;
-    text-decoration: none;
-    transition: color 100ms;
-    vertical-align: baseline;     
+  
  }
- 
+
  .is-hidden {
    display: none;
  }
