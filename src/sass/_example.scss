@@ -1,7 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css?family=Lato:100,300,400');
 
-/*  CSS reset start */
 input,
 button {
   margin: 0;
@@ -11,8 +10,6 @@ button {
   border-radius: 0;
   vertical-align: top;
 }
-
-/* CSS reset end */
 
 body {
   background: #fbe3e8;
@@ -47,7 +44,6 @@ input[type="text"] {
   height: 48px;
   width: 400px;
   outline: none;
-  margin-bottom: 20%;
   padding-left: 40px;
   border-radius: 35px 0 0 35px;
   color: rgb(110, 110, 110);
@@ -76,6 +72,9 @@ input[type="text"] {
     text-align: center;
     text-decoration: none;
     transition: color 100ms;
-    vertical-align: baseline;
-       
+    vertical-align: baseline;     
+ }
+ 
+ .is-hidden {
+   display: none;
  }

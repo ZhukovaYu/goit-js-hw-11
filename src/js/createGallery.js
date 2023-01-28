@@ -27,5 +27,6 @@
     </a>`;
   });
 
-  return gallery.join('');
+    return gallery.join('');
+    
 }

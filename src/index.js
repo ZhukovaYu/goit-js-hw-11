@@ -18,7 +18,8 @@ const onSearchFormSubmit = async event => {
         .getPhotos(keyWord)
         .then(data => {
             console.log(data);
-            galleryListEl.innerHTML = createGalleryCards(data);
+            console.log(data.data.hits);
+            galleryListEl.innerHTML = createGalleryCards(data.data.hits);
         })
         .catch(err => {
             console.log(err);
