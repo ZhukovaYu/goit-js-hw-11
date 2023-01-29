@@ -43,6 +43,8 @@ const onSearchFormSubmit = async event => {
                     currentHits = data.hits.length;
                 }
                 if (data.totalHits > 40) {
+                    console.log(data.totalHits);
+                    
                     loadMoreBtnEl.classList.remove('is-hidden');
                 } else {
                     loadMoreBtnEl.classList.add('is-hidden');
@@ -66,18 +68,17 @@ const onLoadMoreBtnClick = async event => {
             createGalleryCards(data.hits)
         );
         lightbox.refresh();
+
         currentHits = currentHits + data.hits.length;
  
         if (currentHits === data.totalHits) {
             loadMoreBtnEl.classList.add('is-hidden');
             Notify.failure("We're sorry, but you've reached the end of search results.");
         }
-        
     }
     catch (err) {
         console.log(err);
     }
-    
     };
 
 const lightbox = new SimpleLightbox('.gallery a', {
