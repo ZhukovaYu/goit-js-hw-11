@@ -5,9 +5,9 @@ export class ImagesApiService {
     static KEY = '33171544-cc8bca5976e4efd67e6c1a08b';
 
     constructor() {
-        // this.query = '';
-        // this.page = 1;
-        // this.per_page = 40;
+        this.query = '';
+        this.page = 1;
+        this.per_page = 40;
         // this.loadedImages = 0;
     }
             
@@ -25,7 +25,7 @@ export class ImagesApiService {
         }
         try {
             const response = await axios.get(`${ImagesApiService.BASE_URL}/api/?q=${keyWord}`, options);
-            return response;
+            return response.data;
             }
         catch (error) {
             console.error(error);
