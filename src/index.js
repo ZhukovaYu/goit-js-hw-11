@@ -12,7 +12,7 @@ const loadMoreBtnEl = document.querySelector('.js-load-more');
 
 const imagesApiService = new ImagesApiService();
 
-
+let currentHits = null;
 let keyWord = ''
 
 const onSearchFormSubmit = async event => {
