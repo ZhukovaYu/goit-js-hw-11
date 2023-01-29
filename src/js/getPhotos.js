@@ -8,7 +8,6 @@ export class ImagesApiService {
         this.query = '';
         this.page = 1;
         this.per_page = 40;
-        // this.loadedImages = 0;
     }
             
     async getPhotos(keyWord) {

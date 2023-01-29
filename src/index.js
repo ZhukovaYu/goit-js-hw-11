@@ -12,11 +12,14 @@ const loadMoreBtnEl = document.querySelector('.js-load-more');
 
 const imagesApiService = new ImagesApiService();
 
+let keyWord = ''
+
 const onSearchFormSubmit = async event => {
     event.preventDefault();
-    const keyWord = event.target.elements.searchQuery.value.trim();
+    keyWord = event.target.elements.searchQuery.value.trim();
     imagesApiService.page = 1;
 
+    
     if (keyWord === '') {
         return;
     }
@@ -24,6 +27,7 @@ const onSearchFormSubmit = async event => {
     imagesApiService
         .getPhotos(keyWord)
         .then(data => {
+            
             if (data.totalHits === 0) {
                 galleryListEl.innerHTML = '';
                 Notify.failure('Sorry, there are no images matching your search query. Please try again.')
@@ -49,25 +53,31 @@ const onSearchFormSubmit = async event => {
         });
 };
 
-const onLoadMoreBtnClick = async event => {
-    console.log('hello');
-//   imagesApiService.page += 1;
-//   try {
-//     const data = await imagesApiService.getPhotos();
-//     const { data } = data;
-      
-//     galleryListEl.insertAdjacentHTML(
-//       'beforeend',
-//       createGalleryCards(data.results)
-//     );
 
-//     if (imagesApiService.page === data.total_pages) {
-//       loadMoreBtnEl.classList.add('is-hidden');
-//     }
-//     } catch (err) {
-//     console.log(err);
-//   }
-};
+const onLoadMoreBtnClick = async event => {
+    
+    //let currentHits = data.hits.length;
+    
+    imagesApiService.page += 1;
+    try {
+        const data = await imagesApiService.getPhotos(keyWord, imagesApiService.page);
+        console.log(data.hits);
+        galleryListEl.insertAdjacentHTML(
+            'beforeend',
+            createGalleryCards(data.hits)
+        );
+    
+        //currentHits += data.hits.length;
+
+        if (currentHits === data.totalHits) {
+            loadMoreBtnEl.classList.add('is-hidden');
+            Notify.failure("We're sorry, but you've reached the end of search results.");
+        }
+    }
+    catch (err) {
+        console.log(err);
+    }
+    };
 
 let lightbox = new SimpleLightbox('.photo-card a', {
   captions: true,
