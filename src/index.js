@@ -2,8 +2,8 @@
 import { ImagesApiService } from './js/getPhotos';
 import { createGalleryCards } from './js/createGallery';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
  
 const searchFormEl = document.querySelector('.js-search-form');
@@ -11,6 +11,7 @@ const galleryListEl = document.querySelector('.js-gallery');
 const loadMoreBtnEl = document.querySelector('.js-load-more');
 
 const imagesApiService = new ImagesApiService();
+
 
 let keyWord = ''
 
@@ -56,35 +57,33 @@ const onSearchFormSubmit = async event => {
 
 const onLoadMoreBtnClick = async event => {
     
-    //let currentHits = data.hits.length;
-    
     imagesApiService.page += 1;
     try {
         const data = await imagesApiService.getPhotos(keyWord, imagesApiService.page);
-        console.log(data.hits);
+
         galleryListEl.insertAdjacentHTML(
             'beforeend',
             createGalleryCards(data.hits)
         );
-    
-        //currentHits += data.hits.length;
-
+        lightbox.refresh();
+        currentHits = currentHits + data.hits.length;
+ 
         if (currentHits === data.totalHits) {
             loadMoreBtnEl.classList.add('is-hidden');
             Notify.failure("We're sorry, but you've reached the end of search results.");
         }
+        
     }
     catch (err) {
         console.log(err);
     }
+    
     };
 
-let lightbox = new SimpleLightbox('.photo-card a', {
-  captions: true,
+const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
-});
-
+}); 
 
 searchFormEl.addEventListener('submit', onSearchFormSubmit);
 loadMoreBtnEl.addEventListener('click', onLoadMoreBtnClick);
