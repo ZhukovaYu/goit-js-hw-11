@@ -32,19 +32,19 @@ const onSearchFormSubmit = async event => {
             if (data.totalHits === 0) {
                 galleryListEl.innerHTML = '';
                 Notify.failure('Sorry, there are no images matching your search query. Please try again.')
+                
                 galleryListEl.innerHTML = '';
                 loadMoreBtnEl.classList.add('is-hidden');
             } else {
                 if (data.totalHits > 0) {
-                    Notify.success(`Hooray! We found ${data.totalHits} images.`);
-                    // galleryListEl.innerHTML = '';
                     lightbox.refresh();
+                    Notify.success(`Hooray! We found ${data.totalHits} images.`);
+                    //galleryListEl.innerHTML = '';
                     galleryListEl.innerHTML = createGalleryCards(data.hits);
                     currentHits = data.hits.length;
                 }
                 if (data.totalHits > 40) {
-                    console.log(data.totalHits);
-                    
+                    lightbox.refresh();
                     loadMoreBtnEl.classList.remove('is-hidden');
                 } else {
                     loadMoreBtnEl.classList.add('is-hidden');
