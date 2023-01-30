@@ -2,9 +2,17 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:100,300,400');
 
 
-// .fixed-search-section {
-//   position:fixed;
-// }
+.fixed-search-section {
+  position:fixed;
+  z-index: 99;
+  width: 100%;
+  background: #fbe3e8;
+  padding-bottom: 16px;
+ }
+
+.gallery-section{
+  padding-top : 4px;
+  }
 
 input,
 button {
